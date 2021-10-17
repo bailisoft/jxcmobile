@@ -163,7 +163,7 @@ class _QueryPageState extends State<QueryPage> {
     Cargo? result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SearchCargoPage(),
+        builder: (context) => const SearchCargoPage(),
       ),
     );
     setState(() {

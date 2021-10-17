@@ -141,7 +141,7 @@ class _BillPageState extends State<BillPage> {
     Cargo? result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => SearchCargoPage(),
+        builder: (context) => const SearchCargoPage(),
       ),
     );
     if (result == null) {

@@ -44,7 +44,7 @@ class BillListItem extends StatelessWidget {
                           color: (bill.sheetid > 0) ? primaryColor : Colors.red,
                         ),
                       ),
-                      SizedBox(width: 2),
+                      const SizedBox(width: 2),
                       Text(
                         sheetidText,
                         style: TextStyle(
@@ -74,18 +74,18 @@ class BillListItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                Expanded(flex: 2, child: Text('$formattedDateTime')),
+                Expanded(flex: 2, child: Text(formattedDateTime)),
               ],
             ),
             Row(
               children: <Widget>[
-                Expanded(flex: 3, child: Text('${bill.shop}')),
+                Expanded(flex: 3, child: Text(bill.shop)),
                 Expanded(flex: 2, child: Text('数量: ${bill.sumqty}')),
               ],
             ),
             Row(
               children: <Widget>[
-                Expanded(flex: 3, child: Text('${bill.trader}')),
+                Expanded(flex: 3, child: Text(bill.trader)),
                 Expanded(flex: 2, child: Text('金额: ${bill.summoney}')),
               ],
             ),
