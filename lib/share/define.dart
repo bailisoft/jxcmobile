@@ -212,6 +212,9 @@ class BarcodeRule {
   static List<BarcodeRule> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+      if (cols.length < 2) {
+        return BarcodeRule(barcodexp: cols[0], sizermiddlee: false);
+      }
       return BarcodeRule(
         barcodexp: cols[0],
         sizermiddlee: int.tryParse(cols[1]) != 0,
@@ -235,6 +238,9 @@ class SizerType {
   static List<SizerType> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+      if ( cols.length < 3 ) {
+        return SizerType(tname: cols[0], namelist: [''], codelist: ['']);
+      }
       return SizerType(
         tname: cols[0],
         namelist: cols[1].split(','),
@@ -259,6 +265,9 @@ class ColorType {
   static List<ColorType> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+      if ( cols.length < 3 ) {
+        return ColorType(tname: cols[0], namelist: [''], codelist: ['']);
+      }
       return ColorType(
         tname: cols[0],
         namelist: cols[1].split(','),
@@ -313,7 +322,11 @@ class Cargo {
 
   static List<Cargo> parseListFrom(List<String> lines) {
     return lines.map((line) {
+      debugPrint(line);
       List<String> cols = line.split('\t');
+      if ( cols.length < 9 ) {
+        return Cargo(hpcode: cols[0]);
+      }
       Cargo cargo = Cargo(
         hpcode: cols[0],
         hpname: cols[1],
@@ -368,6 +381,11 @@ class Shop {
   static List<Shop> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+
+      if (cols.length < 5) {
+        return Shop(kname: cols[0]);
+      }
+
       return Shop(
         kname: cols[0],
         regdis: (int.tryParse(cols[1]) ?? 10000) / 10000,
@@ -398,6 +416,9 @@ class Customer {
   static List<Customer> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+      if (cols.length < 5) {
+        return Customer(kname: cols[0]);
+      }
       return Customer(
         kname: cols[0],
         regdis: (int.tryParse(cols[1]) ?? 10000) / 10000,
@@ -428,6 +449,9 @@ class Supplier {
   static List<Supplier> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+      if (cols.length < 5) {
+        return Supplier(kname: cols[0]);
+      }
       return Supplier(
         kname: cols[0],
         regdis: (int.tryParse(cols[1]) ?? 10000) / 10000,
@@ -478,6 +502,14 @@ class Policy {
   static List<Policy> parseListFrom(List<String> lines) {
     return lines.map((line) {
       List<String> cols = line.split('\t');
+      if (cols.length < 6) {
+        return Policy(traderExp: cols[0],
+            cargoExp: '',
+            policyDis: 1.0,
+            useLevel: 0,
+            startDate: 0,
+            endDate: 0);
+      }
       return Policy(
         traderExp: cols[0],
         cargoExp: cols[1],
